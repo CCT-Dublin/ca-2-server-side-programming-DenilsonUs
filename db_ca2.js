@@ -14,11 +14,11 @@ connection.connect(function (err) {
   if (err) throw err;
   console.log("Database Connected");
   // Run a simple SELECT query to get all rows
-  connection.query("SELECT * FROM mysql_table", function (err, results) {
-    if (err) throw err;
+  // connection.query("SELECT * FROM mysql_table", function (err, results) {
+  //   if (err) throw err;
 
-    console.log("Data from user_data table:");
-    console.table(results); // display rows in a nice table format
-  });
+  //   console.log("Data from user_data table:");
+  //   console.table(results); // display rows in a nice table format
+  // });
 });
 module.exports = connection; // Export the connection for server.js
