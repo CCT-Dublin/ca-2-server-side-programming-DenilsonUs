@@ -3,7 +3,69 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Form</title>
+    <link rel="stylesheet" href="styles.css" />
+    <title>Form-Ca2</title>
   </head>
-  <body></body>
+  <body>
+    <form action="/submit" method="POST" onsubmit="return validateForm()">
+      <label for="frname">First Name:</label>
+      <input
+        type="text"
+        id="frname"
+        name="frname"
+        placeholder="Den20"
+        required
+      />
+      <span id="frnameError" class="error"></span>
+      <br />
+
+      <label for="ltname">Last Name:</label>
+      <input
+        type="text"
+        id="ltname"
+        name="ltname"
+        placeholder="Lopes21"
+        required
+      />
+      <span id="ltnameError" class="error"></span>
+      <br />
+
+      <label for="email">Email:</label>
+      <input
+        type=""
+        id="email"
+        name="email"
+        placeholder="2024406@cct.ie"
+        required
+      />
+      <span id="emailError" class="error"></span>
+      <br />
+
+      <label for="phoneNumber" class="form-label">Phone Number</label>
+      <input
+        type="tel"
+        placeholder="Enter 10-digit phone number"
+        id="phoneNumber"
+        name="phoneNumber"
+        required
+      />
+      <span id="phoneError" class="error"></span>
+      <br />
+
+      <div class="mb-3">
+        <label for="eircode" class="form-label">Eircode</label>
+        <input
+          type="text"
+          class="form-control"
+          id="eircode"
+          name="eircode"
+          placeholder="D01A12"
+          required
+        />
+        <span id="eircodeError" class="error"></span>
+      </div>
+      <button type="submit" class="btn">Send</button>
+    </form>
+    <script src="./form.js"></script>
+  </body>
 </html>
