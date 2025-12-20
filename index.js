@@ -3,7 +3,7 @@
  */
 
 const fs = require("fs");
-const db = require("./db_ca2.js");
+const db = require("./Model/db_ca2.js");
 
 // CSV file path (convert XLSX to CSV first)
 const filePath = "./Personal_information.csv";
