@@ -70,7 +70,7 @@ app.post("/submit", function (req, res) {
         return res.status(500).send("Database error.");
       }
       console.log("Data inserted successfully into MySQL table.");
-      res.send("Your data has been saved successfully!"); // Send a response after the submit
+      res.redirect("/?success=true"); // Send a response after the submit
     }
   );
 });

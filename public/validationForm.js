@@ -134,3 +134,14 @@ function validateForm() {
   console.log("All validations passed successfully!");
   return true; // allow submission
 }
+
+// Show success message if redirected after submission
+window.addEventListener("DOMContentLoaded", function () {
+  const params = new URLSearchParams(window.location.search);
+  const success = params.get("success");
+
+  if (success) {
+    const message = document.getElementById("formMessage");
+    message.innerText = "Your data has been saved successfully!";
+  }
+});
