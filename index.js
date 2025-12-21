@@ -85,7 +85,7 @@ function processCSVData(csvData) {
 function insertRecord(record, rowNumber) {
   const sql = `
     INSERT INTO mysql_table
-    (first_name, second_name, email, phone_number, eircode)
+    (first_name, last_name, email, phone_number, eircode)
     VALUES (?, ?, ?, ?, ?)
   `;
 

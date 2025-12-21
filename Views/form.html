@@ -7,7 +7,8 @@
     <title>Form-Ca2</title>
   </head>
   <body>
-    <form action="/submit" method="POST">
+    <form action="/submit" method="POST" onsubmit="return validateForm()">
+      <!-- every time userr submit the form this function will be called  -->
       <h2 class="form-title">CA2 Form</h2>
       <label for="frname">First Name:</label>
       <input
@@ -72,6 +73,6 @@
     <footer class="page-footer">
       Denilson Urias Lopez | Student ID: 2024406
     </footer>
-    <script src="./form.js"></script>
+    <script src="/validationForm.js"></script>
   </body>
 </html>

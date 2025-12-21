@@ -7,7 +7,7 @@
 /* Body Styling - Centers the form*/
 body {
   font-family: Arial, sans-serif; /* Basic font */
-  background-image: url("./mao.jpg"); /* add your image filename here */
+  background-image: url("./image/mao.jpg"); /* add your image filename here */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
