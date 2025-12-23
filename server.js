@@ -16,6 +16,16 @@ app.use(express.json());
 // Serve static files (CSS, JavaScript, images) from the public folder
 app.use(express.static("Public"));
 
+//==============================
+// Content Security Policy (CSP) middleware to prevent XSS attacks
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self';"
+  );
+  next();
+});
+
 /*
  middleware to log all incoming HTTP requests.
   This runs before any route handler and helps with debugging.
