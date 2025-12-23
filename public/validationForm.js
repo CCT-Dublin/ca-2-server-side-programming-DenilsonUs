@@ -121,6 +121,12 @@ function validateEircode() {
 }
 //Function to validate form
 function validateForm() {
+  // Clear success message on every submit attempt
+  const message = document.getElementById("formMessage");
+  if (message) {
+    message.innerText = "";
+  }
+
   const namesAreValid = validateNames();
   const emailIsValid = validateEmail();
   const phoneIsValid = validatePhoneNumber();
@@ -143,5 +149,7 @@ window.addEventListener("DOMContentLoaded", function () {
   if (success) {
     const message = document.getElementById("formMessage");
     message.innerText = "Your data has been saved successfully!";
+  } else {
+    document.getElementById("formMessage").innerText = "";
   }
 });
