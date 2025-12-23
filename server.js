@@ -17,7 +17,8 @@ app.use(express.json());
 app.use(express.static("Public"));
 
 //==============================
-// Content Security Policy (CSP) middleware to prevent XSS attacks
+// Content Security Policy (CSP)
+// Prevents loading malicious scripts (XSS protection)
 app.use((req, res, next) => {
   res.setHeader(
     "Content-Security-Policy",
@@ -35,8 +36,14 @@ app.use((req, res, next) => {
   next(); // Pass control to the next middleware or route
 });
 
-// DATABASE SCHEMA VERIFICATION (Health Check)
 // ===============================
+// XSS INPUT SANITISATION FUNCTION
+// Removes dangerous characters like < and >
+function sanitizeInput(input) {
+  return input.replace(/[<>]/g, "").trim();
+}
+// ===============================
+// DATABASE SCHEMA VERIFICATION (Health Check)
 // Verify database schema on server startup
 connection.query("DESCRIBE mysql_table", (err) => {
   if (err) {
@@ -48,31 +55,27 @@ connection.query("DESCRIBE mysql_table", (err) => {
 
 //======================
 //ROUTES
-/**
- * GET /
- * Load the form when accessing http://localhost:3000
- */
+//GET - Load the form when accessing http://localhost:3000
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "Views", "form.html"));
 });
 
-/**
- * POST /submit
- * Handle form submission and insert into database
- */
+//POST /submit - Handle form submission and insert into database
+
 app.post("/submit", function (req, res) {
-  // Extract the form data from the request
-  var firstName = req.body.frname;
-  var lastName = req.body.ltname;
-  var email = req.body.email;
-  var phoneNumber = req.body.phoneNumber;
-  var eircode = req.body.eircode;
+  // Extract AND SANITISE form data to prevent XSS
+  var firstName = sanitizeInput(req.body.frname);
+  var lastName = sanitizeInput(req.body.ltname);
+  var email = sanitizeInput(req.body.email);
+  var phoneNumber = sanitizeInput(req.body.phoneNumber);
+  var eircode = sanitizeInput(req.body.eircode);
+
   // Check that all fields exist
   if (!firstName || !lastName || !email || !phoneNumber || !eircode) {
     console.log("Missing one or more required fields.");
     return res.status(400).send("Please fill in all fields.");
   }
-  // Validate the form data
+  // Server-side validation rules
   const nameRegex = /^[a-zA-Z0-9]{1,20}$/;
   const phoneRegex = /^[0-9]{10}$/;
   const eircodeRegex = /^[0-9][a-zA-Z0-9]{5}$/;

@@ -153,3 +153,19 @@ window.addEventListener("DOMContentLoaded", function () {
     document.getElementById("formMessage").innerText = "";
   }
 });
+
+// Attach validation when the page loads (CSP-safe)
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("ca2Form");
+
+  form.addEventListener("submit", function (event) {
+    // Clear previous success message
+    const message = document.getElementById("formMessage");
+    if (message) message.innerText = "";
+
+    // Run validation
+    if (!validateForm()) {
+      event.preventDefault(); // Stop form submission
+    }
+  });
+});
